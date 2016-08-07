@@ -1,0 +1,48 @@
+From ba935197832d0702ea634b3e4c97682b0c09e426 Mon Sep 17 00:00:00 2001
+From: SquidHQ <git@squidhq.com>
+Date: Sun, 7 Aug 2016 09:17:26 -0700
+Subject: [PATCH] client branding
+
+
+diff --git a/com/squidhq/launcher/Main.java b/com/squidhq/launcher/Main.java
+index cf9d64c..335e1e8 100644
+--- a/com/squidhq/launcher/Main.java
++++ b/com/squidhq/launcher/Main.java
+@@ -11,6 +11,10 @@ import java.util.UUID;
+ 
+ public class Main {
+ 
++	public static final File squidDirectory = new File(net.minecraft.launcher.Main.getWorkingDirectory(), "squidhq");
++	public static final File branderFile = new File(squidDirectory, "brander.jar");
++	public static final File uidFile = new File(squidDirectory, "uid.dat");
++
+ 	public static void main(String[] args) {
+ 		System.out.println("SquidHQ");
+ 		WebLookAndFeel.install();
+@@ -18,10 +22,9 @@ public class Main {
+ 		System.out.println("SquidHQ Done");
+ 
+ 		try {
+-			File squidDirectory = new File(net.minecraft.launcher.Main.getWorkingDirectory(), "squidhq");
+ 			squidDirectory.mkdirs();
++			FileUtils.copyToFile(Main.class.getResourceAsStream("/brander.jar"), branderFile);
+ 
+-			File uidFile = new File(squidDirectory, "uid.dat");
+ 			if (!uidFile.exists()) {
+ 				FileUtils.write(uidFile, UUID.randomUUID().toString(), "UTF-8", false);
+ 			}
+diff --git a/net/minecraft/launcher/game/MinecraftGameRunner.java b/net/minecraft/launcher/game/MinecraftGameRunner.java
+index 53a2f22..e80a8f7 100644
+--- a/net/minecraft/launcher/game/MinecraftGameRunner.java
++++ b/net/minecraft/launcher/game/MinecraftGameRunner.java
+@@ -182,6 +182,7 @@ public class MinecraftGameRunner extends AbstractGameRunner implements GameProce
+             var4.withArguments(new String[]{"-Dos.version=10.0"});
+          }
+ 
++         var4.withArguments(new String[]{"-javaagent:" + com.squidhq.launcher.Main.branderFile.getAbsolutePath()});
+          var4.withArguments(new String[]{"-Djava.library.path=" + this.nativeDir.getAbsolutePath()});
+          var4.withArguments(new String[]{"-cp", this.constructClassPath(this.getVersion())});
+          var4.withArguments(new String[]{this.getVersion().getMainClass()});
+-- 
+2.7.4
+

@@ -14,7 +14,7 @@ sourceSets {
             srcDir 'src'
         }
         resources {
-            srcDir 'src'
+            srcDirs = ['src', 'resources']
         }
     }
     main {
@@ -47,6 +47,17 @@ repositories {
 }
 
 dependencies {
+    compile 'com.google.guava:guava:19.0'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.apache.logging.log4j:log4j-core:2.0-beta9'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'commons-io:commons-io:2.5'
+    compile 'commons-codec:commons-codec:1.10'
+    compile 'net.sf.jopt-simple:jopt-simple:5.0.2'
+    compile 'com.mojang:authlib:1.5.17'
+    compile 'javax.annotation:javax.annotation-api:1.2'
+    compile 'de.sciss:weblaf:2.1.1'
+
     shadow 'com.google.guava:guava:19.0'
     shadow 'org.apache.commons:commons-lang3:3.4'
     shadow 'org.apache.logging.log4j:log4j-core:2.0-beta9'
