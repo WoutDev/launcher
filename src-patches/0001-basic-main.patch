@@ -1,0 +1,29 @@
+From 5a4bf3b3b161e45fee21bc2b57b9a99477cf7f50 Mon Sep 17 00:00:00 2001
+From: SquidHQ <git@squidhq.com>
+Date: Sat, 6 Aug 2016 04:49:57 -0700
+Subject: [PATCH] basic main
+
+
+diff --git a/com/squidhq/launcher/Main.java b/com/squidhq/launcher/Main.java
+new file mode 100644
+index 0000000..024af4c
+--- /dev/null
++++ b/com/squidhq/launcher/Main.java
+@@ -0,0 +1,14 @@
++package com.squidhq.launcher;
++
++import com.alee.laf.WebLookAndFeel;
++
++public class Main {
++
++	public static void main(String[] args) {
++		System.out.println("SquidHQ");
++		WebLookAndFeel.install();
++		net.minecraft.launcher.Main.main(args);
++		System.out.println("SquidHQ Done");
++	}
++
++}
+-- 
+2.7.4
+

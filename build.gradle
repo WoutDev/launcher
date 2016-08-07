@@ -1,0 +1,62 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+configurations {
+    provided
+    shadow
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src'
+        }
+    }
+    main {
+        compileClasspath += configurations.provided
+        compileClasspath += configurations.shadow
+    }
+}
+
+jar {
+    version = null
+    manifest {
+        attributes (
+            'Implementation-Version': 'S0.0.1',
+            'Main-Class': 'com.squidhq.launcher.Main'
+        )
+    }
+    from { 
+        configurations.shadow.collect { 
+            it.isDirectory() ? it : zipTree(it) 
+        } 
+    }
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    maven {
+        url "https://libraries.minecraft.net"
+    }
+}
+
+dependencies {
+    shadow 'com.google.guava:guava:19.0'
+    shadow 'org.apache.commons:commons-lang3:3.4'
+    shadow 'org.apache.logging.log4j:log4j-core:2.0-beta9'
+    shadow 'com.google.code.gson:gson:2.7'
+    shadow 'commons-io:commons-io:2.5'
+    shadow 'commons-codec:commons-codec:1.10'
+    shadow 'net.sf.jopt-simple:jopt-simple:5.0.2'
+    shadow 'com.mojang:authlib:1.5.17'
+    shadow 'javax.annotation:javax.annotation-api:1.2'
+    shadow 'de.sciss:weblaf:2.1.1'
+}
+
+

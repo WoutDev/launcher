@@ -1,0 +1,23 @@
+From bbf1e0c3984da7efcae12009b6fc5ac94c0f82ab Mon Sep 17 00:00:00 2001
+From: SquidHQ <git@squidhq.com>
+Date: Sat, 6 Aug 2016 04:52:06 -0700
+Subject: [PATCH] no mojang netty
+
+
+diff --git a/net/minecraft/launcher/updater/CompleteMinecraftVersion.java b/net/minecraft/launcher/updater/CompleteMinecraftVersion.java
+index f4e9887..a181591 100644
+--- a/net/minecraft/launcher/updater/CompleteMinecraftVersion.java
++++ b/net/minecraft/launcher/updater/CompleteMinecraftVersion.java
+@@ -147,6 +147,9 @@ public class CompleteMinecraftVersion implements CompleteVersion {
+ 
+       while(var5.hasNext()) {
+          Library var6 = (Library)var5.next();
++         if (var6.getName().startsWith("com.mojang") && var6.getName().contains("netty")) {
++            continue;
++         }
+          if(var6.getNatives() == null) {
+             var4.add(new File(var2, "libraries/" + var6.getArtifactPath()));
+          }
+-- 
+2.7.4
+

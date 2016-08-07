@@ -1,0 +1,21 @@
+From 0bce77873884df8e4f96e78dad6a8d27d5f8c86c Mon Sep 17 00:00:00 2001
+From: SquidHQ <git@squidhq.com>
+Date: Sat, 6 Aug 2016 05:03:21 -0700
+Subject: [PATCH] no look and feel
+
+
+diff --git a/net/minecraft/launcher/SwingUserInterface.java b/net/minecraft/launcher/SwingUserInterface.java
+index ccc9131..bb44a49 100644
+--- a/net/minecraft/launcher/SwingUserInterface.java
++++ b/net/minecraft/launcher/SwingUserInterface.java
+@@ -49,7 +49,6 @@ public class SwingUserInterface implements MinecraftUserInterface {
+    public SwingUserInterface(Launcher var1, JFrame var2) {
+       this.minecraftLauncher = var1;
+       this.frame = var2;
+-      setLookAndFeel();
+    }
+ 
+    private static void setLookAndFeel() {
+-- 
+2.7.4
+
